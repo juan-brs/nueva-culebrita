@@ -2,10 +2,12 @@ const tablero = document.getElementById('tablero')
 const filas = 20;
 const columnas = 20;
 let culebra = [{ fila: 10, columna: 10 }];
+let comida = [{ fila: 0, columna: 0 }];
 let direction = 'stoped';
 
 document.addEventListener("DOMContentLoaded", inicializarTablero);
 document.addEventListener("DOMContentLoaded", dibujarCulebra);
+document.addEventListener("DOMContentLoaded", dibujarComida);
 document.addEventListener('keydown', cambiarDireccion);
 
 const playGame = () => {
@@ -37,6 +39,21 @@ function dibujarCulebra() {
         celda.classList.add('celda')
         if (segmento === culebra[0]) {
             celda.classList.add('cabeza')
+        }
+    });
+}
+
+function dibujarComida() {
+    comida.forEach(segmento => {
+        const indice =
+            segmento.fila * columnas +
+            segmento.columna;
+        const celda =
+            tablero.children[indice];
+
+        celda.classList.add('comida')
+        if (segmento === comida[0]) {
+            celda.classList.add('comidita')
         }
     });
 }
